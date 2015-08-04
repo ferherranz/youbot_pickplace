@@ -3,21 +3,25 @@
 
 
   <!-- Start MoveIt -->
-  <include file="$(find youbot_moveit)/launch/move_group.launch" >
-    <arg name="info" value="true"/><!-- publish grasp markers -->
-  </include>
+  <!-- Drive to the table, pick stuff up -->
+  <!--
+  <node name="gripper_server" pkg="youbot_gripper" type="youbot_gripper_server.py" output="screen" />
 
+  <include file="$(find youbot_moveit)/launch/move_group.launch" >
+    <arg name="info" value="true"/>
+  </include>
+  -->
   <!-- Start Perception -->
-  <node name="basic_grasping_perception" pkg="simple_grasping" type="basic_grasping_perception" >
+  <node name="basic_grasping_perception" pkg="simple_grasping" type="basic_grasping_perception" output="screen">
     <!-- finger tips are 195mm from wrist_roll_link
          fingers are 60mm deep -->
     <param name="tool_offset" value="0.165" />
     <param name="finger_depth" value="0.020" />
     <param name="gripper/gripper_tolerance" value="0.05" />
-    <remap from="/head_camera/depth_registered/points" to="/map_skin"/>
+    <remap from="/head_camera/depth_registered/points" to="/camera/depth_registered/points"/>
   </node>
 
   <!-- Drive to the table, pick stuff up -->
-  <node name="demo" pkg="fetch_gazebo_demo" type="demo.py" output="screen" />
+<!--  <node name="demo" pkg="youbot_pickplace" type="pickplace_demo.py" output="screen" />-->
 
 </launch>

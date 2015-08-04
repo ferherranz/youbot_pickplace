@@ -51,8 +51,8 @@ class GraspingClient(object):
 
     def __init__(self):
         self.scene = PlanningSceneInterface("base_link")
-        self.pickplace = PickPlaceInterface("arm", "gripper", verbose=True)
-        self.move_group = MoveGroupInterface("arm", "base_link")
+        self.pickplace = PickPlaceInterface("arm_1", "gripper", verbose=True)
+        self.move_group = MoveGroupInterface("arm_1", "base_link")
 
         find_topic = "basic_grasping_perception/find_objects"
         rospy.loginfo("Waiting for %s..." % find_topic)
